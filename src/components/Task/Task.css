@@ -1,0 +1,12 @@
+.task{
+    justify-content:center;
+    margin-top: 10px;
+}
+.task p{
+    display: inline;
+}
+.taskDescription{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 5px;
+}

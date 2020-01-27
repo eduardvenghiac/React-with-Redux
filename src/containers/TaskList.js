@@ -3,56 +3,28 @@ import Task from '../components/Task/Task'
 import Button from '../components/Button/Button'
 import {connect} from 'react-redux';
 import * as actionTypes from '../store/actions'
-import quote from '../Request/quote'
+
+function* keyMaker() {
+    var key = 0;
+    while (true)
+      yield key++;
+  }
 
 class TaskList extends Component{
 
-    // state = {
-    //     taskNames:[],
-    //     taskName:''
-    // }
-
-    // removeTask = (i) => {
-    //     let arr = this.state.taskNames;
-    //     arr.splice(i,1);
-    //     this.setState({taskNames:arr})
-    // }
-
-    // updateTask = (newDescription,i) => {
-    //     let arr = this.state.taskNames;
-    //     arr[i] = newDescription;
-    //     this.setState({taskNames:arr})
-    // }
-
-    // handleChange = (event) => {
-    //     this.setState({taskName:event.target.value});
-    // }
-
-    // handleSubmit = () => {
-    //     if(this.state.taskName.length==0){
-    //         return;
-    //     }
-    //     this.setState({taskNames:this.state.taskNames.concat(this.state.taskName),taskName:''});
-    // }
-
-    addTask = async () => {
-
-        const quuote = await quote();
-        console.log(quuote);
-
-        this.props.onAddTask(this.props.taskName,quuote);
-    }
-
     render(){
+        var gen=keyMaker();
         return(
             <main>
                 <div className="taskList">
                     <p>Tasks:{this.props.taskNames.length}</p>
+                    <hr />
                     {
                         this.props.taskNames.map((tskName,i) =>
                         {
+                            let key = gen.next().value;
                             return (
-                            <Task key={i} index={i} quoteJoke={tskName.quote} updateTaskName={(text)=>this.props.onEditTask(text,i)} removeTaskFromList={()=>this.props.onRemoveTask(tskName.id)}>{tskName.taskName}</Task>
+                            <Task key={key} quoteJoke={tskName.quote} updateTaskName={(text)=>this.props.onEditTask(text,i)} removeTaskFromList={()=>this.props.onRemoveTask(tskName.id)}>{tskName.taskName}</Task>
                             );
                         })
                     }
@@ -60,7 +32,7 @@ class TaskList extends Component{
                 <p>Add new task here:</p>
                 <div className="newTask">
                     <input type="text" onChange={(event)=>this.props.onAddTaskName(event.target.value)} value={this.props.taskName}/>
-                    <Button type="handleSubmit" name="Add task" handleSubmitTask={this.addTask}/>
+                    <Button type="handleSubmit" name="Add task" handleSubmitTask={()=>this.props.onAddTask(this.props.taskName)}/>
                 </div>
             </main>
         );
@@ -76,10 +48,10 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onAddTask:(taskName,quote)=>dispatch({type:actionTypes.ADD_TASK,taskName:taskName,quote:quote}),
-        onRemoveTask:(id)=>dispatch({type:actionTypes.REMOVE_TASK,id:id}),
-        onEditTask:(newTaskName,index)=>dispatch({type:actionTypes.EDIT_TASK,newName:newTaskName,index:index}),
-        onAddTaskName:(taskName)=>dispatch({type:actionTypes.ADD_TASK_NAME,taskName:taskName})
+        onAddTask:(taskName) => dispatch({type:actionTypes.ADD_TASK_SAGA,taskName:taskName}),
+        onRemoveTask:(id) => dispatch({type:actionTypes.REMOVE_TASK,id:id}),
+        onEditTask:(newTaskName,index) => dispatch({type:actionTypes.EDIT_TASK,newName:newTaskName,index:index}),
+        onAddTaskName:(taskName) => dispatch({type:actionTypes.ADD_TASK_NAME,taskName:taskName})
     }
 }
 

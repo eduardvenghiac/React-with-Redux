@@ -1,0 +1,8 @@
+.taskList{
+    justify-content: center;
+}
+.newTask{
+    justify-content: center;
+    display: flex;
+    margin-bottom:15px;
+}

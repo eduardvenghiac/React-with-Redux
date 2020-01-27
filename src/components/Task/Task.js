@@ -28,10 +28,12 @@ class Task extends Component{
     renderNormalTask = () => {
         return(
             <div className="task">
-                <div className="taskDescription">{this.props.children}</div>
-                <Button type="edit" name="Edit" editTask={this.edit}/>
-                <Button type="delete" name="Delete" deleteTask={this.delete}/>
+                <div className="taskDescription">{this.props.children}
+                    <Button type="edit" name="Edit" editTask={this.edit}/>
+                    <Button type="delete" name="Delete" deleteTask={this.delete}/>
+                </div>
                 <p>{this.props.quoteJoke}</p>
+                <hr />
             </div> 
          );
     }
@@ -39,10 +41,13 @@ class Task extends Component{
     renderEditingTask = () => {
         return(
             <div className="task">
-                <input type="text" ref="newDescription" defaultValue={this.props.children}/>
-                <Button type="save" name="Save" saveTask={this.save}/>
-                <Button type="cancel" name="Cancel" cancelTask={this.cancel}/>
+                <div className="taskDescription">
+                    <input type="text" ref="newDescription" defaultValue={this.props.children}/>
+                    <Button type="save" name="Save" saveTask={this.save}/>
+                    <Button type="cancel" name="Cancel" cancelTask={this.cancel}/>
+                </div>
                 <p>{this.props.quoteJoke}</p>
+                <hr />
             </div> 
          );
     }

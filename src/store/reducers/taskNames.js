@@ -27,10 +27,6 @@ const reducer = (state=initialState,action) => {
                 taskNames:updatedTaskNames
             };
         case actionTypes.ADD_TASK_NAME:
-            if(action.taskName.length===0)
-            {
-                return;
-            }
             return{
                 ...state,
                 taskName:action.taskName
