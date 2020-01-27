@@ -17,8 +17,7 @@ class TaskList extends Component{
         return(
             <main>
                 <div className="taskList">
-                    <p>Tasks:{this.props.taskNames.length}</p>
-                    <hr />
+                    <p>Tasks: {this.props.taskNames.length}</p>
                     {
                         this.props.taskNames.map((tskName,i) =>
                         {

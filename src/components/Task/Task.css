@@ -1,6 +1,7 @@
 .task{
     justify-content:center;
-    margin-top: 10px;
+    padding-top: 10px;
+    padding-bottom:10px;
 }
 .task p{
     display: inline;
@@ -8,5 +9,8 @@
 .taskDescription{
     display: flex;
     justify-content: center;
-    margin-bottom: 5px;
+    align-items: center;
+    padding-bottom: 5px;
+    padding-top:10px;
+    border-top: 1px solid black;
 }

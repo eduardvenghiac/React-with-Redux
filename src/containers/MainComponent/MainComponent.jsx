@@ -8,9 +8,7 @@ class MainComponent extends Component{
         return(
             <div className="mainComponent">
                 <Header />
-                <hr />
                 <TaskList />
-                <hr />
                 <Footer />
             </div>
         );

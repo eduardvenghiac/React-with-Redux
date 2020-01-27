@@ -33,7 +33,6 @@ class Task extends Component{
                     <Button type="delete" name="Delete" deleteTask={this.delete}/>
                 </div>
                 <p>{this.props.quoteJoke}</p>
-                <hr />
             </div> 
          );
     }
@@ -47,7 +46,6 @@ class Task extends Component{
                     <Button type="cancel" name="Cancel" cancelTask={this.cancel}/>
                 </div>
                 <p>{this.props.quoteJoke}</p>
-                <hr />
             </div> 
          );
     }

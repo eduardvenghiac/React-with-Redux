@@ -1,3 +1,12 @@
 .button{
     margin-left: 10px;
 }
+button{
+    background-color:#ccc;
+    border:none;
+    height: 25px;
+    border-radius: 10%;
+}
+button:focus{
+    outline-color:#ccc;
+}
